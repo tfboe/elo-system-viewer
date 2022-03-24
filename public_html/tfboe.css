@@ -1,4 +1,8 @@
 @media all {
+
+    .playerinfo {
+        padding: 5px 0 10px 0;
+    }
     
     #page_margins, #page, #main, #col1_content {
         padding: 0px !important;
@@ -11,6 +15,7 @@
        font-size: 13px;
        text-align: justify;
        color:#404040;
+       background-color: #FFFFFF00 !important;
     }
 
     h1 {
@@ -32,44 +37,111 @@
         text-decoration: underline;
         color: #1C1C1C;
     }
+
+    .hide{
+      background-color: #ffffff;
+    }
     
     .ranking, .rankingDetail {
-        border: 2px #d4d4d4 solid;
+        border: 1px;
+        border-color: #F2F2F2 !important;
         border-spacing: 0;
-        border-radius: 15px;
-        -moz-border-radius: 15px;
+        -moz-border-radius: 0;
         border-collapse: separate;        
         color:#404040;
         font-size: 13px;
+        width: 100%;
+        min-width: 300px;
+        text-align: left;
+        padding: 0 0 3px 0;
+        background-color: #6DC1E4;
+        border-radius: 5px !important;
     }
-    
+
     .ranking th, .rankingDetail th {
-        padding: 5px;
+        padding: 15px 5px 15px 5px;
+        color: #FFFFFF;
     }
     
     .ranking tr:first-child td:first-child,
     .rankingDetail th:first-child {
-      -moz-border-radius: 15px 0 0 0;
-      border-radius: 15px 0 0 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
     }
     .ranking tr:first-child td:last-child,
     .rankingDetail th:last-child {
-      -moz-border-radius: 0 15px 0 0;
-      border-radius: 0 15px 0 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
     }
     .ranking tr:last-child td:first-child {
-      -moz-border-radius: 0 0 0 15px;
-      border-radius: 0 0 0 15px;
+      -moz-border-radius: 0;
+      border-radius: 0;
     }
     .ranking tr:last-child td:last-child {
-      -moz-border-radius: 0 0 15px 0;
-      border-radius: 0 0 15px 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
     }
     
     .ranking .row1, .rankingDetail .row1 {
-        background-color: #dcdcdc;
+      background-color: #F2F2F2 !important;
     }
-    .ranking .row2, .rankingDetail .row2 {
-        background-color: #f4f4f4 !important;
+    .ranking .row2, .rankingDetail .row2 { 
+      background-color: #FFFFFF !important;
     }
+
+    /* Dropdown Button */
+    .dropbtn {
+      background-color: #FFFFFF00;
+      border: 1px solid #D5D5D5;
+      border-radius: 5px;
+      color: #666666;
+      padding: 7px 30px 7px 30px;
+      font-size: 16px;
+      font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    /* Dropdown Button hover */
+    .dropbtn:hover {
+      background-color: #FFFFFF00;
+      outline: 2px solid #000000;
+      outline-offset: -2px;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+      display: inline-block;
+      padding: 10px 0 10px 0;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #ffffff;
+      min-width: 180px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 5;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      color: black;
+      padding: 8px 12px;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {display: block; }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+      background-color: #ffffff;
+      outline: 2px solid #000000;
+      outline-offset: -2px;}
 }

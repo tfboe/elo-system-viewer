@@ -1,19 +1,30 @@
 @CHARSET "UTF-8";
 
 .c { clear:both; }
-.form { padding:2px; }
-.form-left { padding:2px; font-weight:bold;}
-.form-right { padding:2px; }
+
+.dateform {
+    display:inline-block;
+    padding: 10px 0 10px 0;
+}
+
+input[type=date] {
+  border: 1px solid #D5D5D5;
+  border-radius: 5px;
+  padding: 6px 10px 5px 10px;
+  font-size: 15px;
+  font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+  font-style: normal;
+  font-weight: normal;
+  color: #666666;
+}
+
 .short { width:80px; padding:2px; }
 
 #existing { display:none; }
 #newEntry { display:none; }
 
-
-table td { padding:5px; }
+table td { padding: 5px; border: 2px; border-color: #F2F2F2;}
 
 h1 { text-align: left; }
 
-.sidebar input { margin-top: 5px; padding: 2px; width: 114px; }
-
-
+.sidebar input { margin-top: 5px; padding: 2px; width: 250px; }
