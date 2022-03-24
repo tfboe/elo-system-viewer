@@ -1,0 +1,75 @@
+@media all {
+    
+    #page_margins, #page, #main, #col1_content {
+        padding: 0px !important;
+    }
+    
+    body, #col3_content {
+       font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+       font-style: normal;
+       font-weight: normal;
+       font-size: 13px;
+       text-align: justify;
+       color:#404040;
+    }
+
+    h1 {
+       font-family: Tahoma, Arial, Helvetica, Sans-Serif;
+       line-height: 1em;
+       font-size: 26px;
+       color:#404040;
+    }
+
+    h2, h3, h4, h5 {
+       color:#404040;
+    }
+
+    a, .sidebar {
+        line-height: 21px; text-decoration:none; color:#404040; font-size: 13px;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+        color: #1C1C1C;
+    }
+    
+    .ranking, .rankingDetail {
+        border: 2px #d4d4d4 solid;
+        border-spacing: 0;
+        border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-collapse: separate;        
+        color:#404040;
+        font-size: 13px;
+    }
+    
+    .ranking th, .rankingDetail th {
+        padding: 5px;
+    }
+    
+    .ranking tr:first-child td:first-child,
+    .rankingDetail th:first-child {
+      -moz-border-radius: 15px 0 0 0;
+      border-radius: 15px 0 0 0;
+    }
+    .ranking tr:first-child td:last-child,
+    .rankingDetail th:last-child {
+      -moz-border-radius: 0 15px 0 0;
+      border-radius: 0 15px 0 0;
+    }
+    .ranking tr:last-child td:first-child {
+      -moz-border-radius: 0 0 0 15px;
+      border-radius: 0 0 0 15px;
+    }
+    .ranking tr:last-child td:last-child {
+      -moz-border-radius: 0 0 15px 0;
+      border-radius: 0 0 15px 0;
+    }
+    
+    .ranking .row1, .rankingDetail .row1 {
+        background-color: #dcdcdc;
+    }
+    .ranking .row2, .rankingDetail .row2 {
+        background-color: #f4f4f4 !important;
+    }
+}

@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+.c { clear:both; }
+.form { padding:2px; }
+.form-left { padding:2px; font-weight:bold;}
+.form-right { padding:2px; }
+.short { width:80px; padding:2px; }
+
+#existing { display:none; }
+#newEntry { display:none; }
+
+
+table td { padding:5px; }
+
+h1 { text-align: left; }
+
+.sidebar input { margin-top: 5px; padding: 2px; width: 114px; }
+
+

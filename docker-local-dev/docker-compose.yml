@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  viewer:
+    build: .
+    volumes:
+      - ..:/workspace 
+      - /tmp/.X11-unix:/tmp/.X11-unix 
+      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
+      - /dev/shm:/dev/shm
+      - vscodeuserdata:/userdata
+      - user_home:/home/dev/
+      - ${SSH_AUTH_SOCK}:/ssh-agent
+    privileged: true
+    environment:
+      - DISPLAY=${DISPLAY}
+      - GIT_NAME=${GIT_NAME}
+      - GIT_EMAIL=${GIT_EMAIL}
+      - SSH_AUTH_SOCK=/ssh-agent
+  apache:
+    image: php:7.4-apache
+    ports:
+      - 8010:80
+    volumes:
+      - ../public_html:/var/www/html/
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - elo-system_elo-system
+volumes:
+  vscodeuserdata:
+  user_home:
+networks:
+  elo-system_elo-system:
+    external: true
