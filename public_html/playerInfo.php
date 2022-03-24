@@ -233,77 +233,86 @@ tr.clickable:hover{
 <link rel="stylesheet" type="text/css" media="screen" href="base.css">
 <link rel="stylesheet" type="text/css" media="screen" href="basemod.css">
 </head>
+
 <body>
-<div id="page_margins">
-<div id="page">
-<div id="main">
-<div id="col1">  
-    <div id="col1_content" class="clearfix">
-        <h5>Elo Ranglisten</h5>
-        <a href="index.php?<?=build_query("opensingle")?>">Offenes Einzel</a><br>
-            <a href="index.php?<?=build_query("opendouble")?>">Offenes Doppel</a><br>
-            <a href="index.php?<?=build_query("womensingle")?>">Damen Einzel</a><br>
-            <a href="index.php?<?=build_query("womendouble")?>">Damen Doppel</a><br>
-            <a href="index.php?<?=build_query("mixed")?>">Mixed Doppel</a><br>
-            <a href="index.php?<?=build_query("seniorsingle")?>">Senioren Einzel</a><br>
-            <a href="index.php?<?=build_query("seniordouble")?>">Senioren Doppel</a><br>
-            <a href="index.php?<?=build_query("juniorsingle")?>">Junioren Einzel</a><br>
-            <a href="index.php?<?=build_query("juniordouble")?>">Junioren Doppel</a><br>
-            <a href="index.php?<?=build_query("classic")?>">Offenes Classic Doppel</a><br>
-    </div>  
-</div>
-<div id="col3">
-<div id="col3_content" class="clearfix">
-<br>
-<h2><?=$name?></h2>
-Elo-Detailübersicht für Spieler <b><?=$player?></b>
-<table class="rankingDetail">
-    <thead>
-        <tr>
-            <th>Datum</th>
-            <th>Turnier</th>
-            <th><?=$isDouble ? "Partner / " : ""?>Begegnung</th>
-            <th>Ergebnis</th>
-            <th>Elo+/-</th>
-            <th>Elozahl</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($data as $i => $tournament): ?>
-            <tbody>
-                <tr class="row<?=($i + 1) % 2 + 1?> clickable" onclick="toggle()">
+  <div id="page_margins">
+    <div id="page">
+      <div id="main">
+        <div id="col3">
+          <div id="col3_content" class="clearfix">
+
+            <h1>Elo-Rangliste<?=!$firstOfMaxDateMonth ? "" : " vom " . date_format(date_create($firstOfMaxDateMonth), "d.m.Y")?><br><sub><?=$name?></sub></h1>
+            <div class="dropdown">
+              <button class="dropbtn">Spielmodus</button>
+              <div class="dropdown-content">
+                <a href="index.php?<?=build_query("opensingle")?>">Offenes Einzel</a>
+                <a href="index.php?<?=build_query("opendouble")?>">Offenes Doppel</a>
+                <a href="index.php?<?=build_query("womensingle")?>">Damen Einzel</a>
+                <a href="index.php?<?=build_query("womendouble")?>">Damen Doppel</a>
+                <a href="index.php?<?=build_query("mixed")?>">Mixed Doppel</a>
+                <a href="index.php?<?=build_query("seniorsingle")?>">Senioren Einzel</a>
+                <a href="index.php?<?=build_query("seniordouble")?>">Senioren Doppel</a>
+                <a href="index.php?<?=build_query("juniorsingle")?>">Junioren Einzel</a>
+                <a href="index.php?<?=build_query("juniordouble")?>">Junioren Doppel</a>
+                <a href="index.php?<?=build_query("classic")?>">Offenes Classic Doppel</a>
+              </div>
+            </div>
+            <form class="dateform" action="index.php" method="GET">
+              <?php foreach ($_GET as $key => $value) { ?>
+              <input type="hidden" name="<?= $key?>" value="<?= $value?>" />
+              <?php }?>
+              <?php if ($showInactive) {?>
+              <input type="hidden" name="showInactive" value="1" />
+              <?php }?>
+              <input type="date" name="maxDate" value="<?= $maxDate?>" onchange='this.form.submit()' />
+            </form>
+            <br>
+            <div class="playerinfo">Elo-Detailübersicht für Spieler <b><?=$player?></b></div>
+            <table class="rankingDetail">
+              <thead>
+                <tr>
+                  <th>Datum</th>
+                  <th>Turnier</th>
+                  <th><?=$isDouble ? "Partner / " : ""?>Begegnung</th>
+                  <th>Ergebnis</th>
+                  <th>Elo+/-</th>
+                  <th>Elozahl</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach($data as $i => $tournament): ?>
+                <tbody>
+                  <tr class="row<?=($i + 1) % 2 + 1?> clickable" onclick="toggle()">
                     <td><?=date('d.m.Y', $tournament["info"]["start"]) ?></td>
-                    <td colspan="<?= $isDouble ? "1" : "2" ?>">
-                        <?=$tournament["info"]["name"]?>
-                    </td>
+                    <td colspan="<?= $isDouble ? "1" : "2" ?>"><?=$tournament["info"]["name"]?></td>
                     <?php if ($isDouble): ?>
-                        <td><?=$tournament["partner"]?></td>
+                    <td><?=$tournament["partner"]?></td>
                     <?php endif; ?>
                     <td><?=$tournament["competitionRank"]?></td>
                     <td><?=change($tournament["eloChange"])?></td>
                     <td><?=round($tournament["newElo"])?></td>
-                </tr>
-            </tbody>
-            <tbody class="hide">
-            <?php foreach($tournament["games"] as $j => $game): ?>
-            <tr>
-                <td></td>
-                <td><?=$game["phaseName"]?></td>
-                <td><?=ownTeam($game["partner"]) . " (" . round($game["teamElo"]) . ") - " . team($game["opponents"]) . " (" . round($game["opponentElo"]) . ")"?></td>
-                <td><?=result($game["result"])?></td>
-                <td><?=change($game["elo"], 2)?></td>
-                <td><?=round($game["newElo"])?></td>
-            </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </tbody>
-        <?php endforeach; ?>      
-    </tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
+                  </tr>
+                </tbody>
+                <tbody class="hide">
+                  <?php foreach($tournament["games"] as $j => $game): ?>
+                  <tr>
+                    <td></td>
+                    <td><?=$game["phaseName"]?></td>
+                    <td><?=ownTeam($game["partner"]) . " (" . round($game["teamElo"]) . ") - " . team($game["opponents"]) . " (" . round($game["opponentElo"]) . ")"?></td>
+                    <td><?=result($game["result"])?></td>
+                    <td><?=change($game["elo"], 2)?></td>
+                    <td><?=round($game["newElo"])?></td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </tbody>
+              <?php endforeach; ?>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>

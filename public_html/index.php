@@ -75,74 +75,68 @@ function name($row) {
 ?>
 
 <html>
+
 <head>
-<link rel="stylesheet" type="text/css" media="screen" href="tfboe.css">
-<link rel="stylesheet" type="text/css" media="screen" href="2007.css">
-<link rel="stylesheet" type="text/css" media="screen" href="base.css">
-<link rel="stylesheet" type="text/css" media="screen" href="basemod.css">
-<link rel="stylesheet" type="text/css" media="screen" href="switch.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="tfboe.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="2007.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="base.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="basemod.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="switch.css">
 </head>
+
 <body>
-    <div id="page_margins">
+  <div id="page_margins">
     <div id="page">
-    <div id="main">
-    <div id="col1">  
-        <div id="col1_content" class="clearfix">
-            <h5>Elo Ranglisten</h5>
-            <a href="index.php?<?=build_query("opensingle")?>">Offenes Einzel</a><br>
-            <a href="index.php?<?=build_query("opendouble")?>">Offenes Doppel</a><br>
-            <a href="index.php?<?=build_query("womensingle")?>">Damen Einzel</a><br>
-            <a href="index.php?<?=build_query("womendouble")?>">Damen Doppel</a><br>
-            <a href="index.php?<?=build_query("mixed")?>">Mixed Doppel</a><br>
-            <a href="index.php?<?=build_query("seniorsingle")?>">Senioren Einzel</a><br>
-            <a href="index.php?<?=build_query("seniordouble")?>">Senioren Doppel</a><br>
-            <a href="index.php?<?=build_query("juniorsingle")?>">Junioren Einzel</a><br>
-            <a href="index.php?<?=build_query("juniordouble")?>">Junioren Doppel</a><br>
-            <a href="index.php?<?=build_query("classic")?>">Offenes Classic Doppel</a><br>
+      <div id="main">
+        <div id="col3">
+          <div id="col3_content" class="clearfix">
+            <h1>Elo-Rangliste<?=!$firstOfMaxDateMonth ? "" : " vom " . date_format(date_create($firstOfMaxDateMonth), "d.m.Y")?><br><sub><?=$name?></sub></h1>
+            <div class="dropdown">
+              <button class="dropbtn">Spielmodus</button>
+              <div class="dropdown-content">
+                <a href="index.php?<?=build_query("opensingle")?>">Offenes Einzel</a>
+                <a href="index.php?<?=build_query("opendouble")?>">Offenes Doppel</a>
+                <a href="index.php?<?=build_query("womensingle")?>">Damen Einzel</a>
+                <a href="index.php?<?=build_query("womendouble")?>">Damen Doppel</a>
+                <a href="index.php?<?=build_query("mixed")?>">Mixed Doppel</a>
+                <a href="index.php?<?=build_query("seniorsingle")?>">Senioren Einzel</a>
+                <a href="index.php?<?=build_query("seniordouble")?>">Senioren Doppel</a>
+                <a href="index.php?<?=build_query("juniorsingle")?>">Junioren Einzel</a>
+                <a href="index.php?<?=build_query("juniordouble")?>">Junioren Doppel</a>
+                <a href="index.php?<?=build_query("classic")?>">Offenes Classic Doppel</a>
+              </div>
+            </div>
+            <form class="dateform" action="index.php" method="GET">
+              <?php foreach ($_GET as $key => $value) { ?>
+              <input type="hidden" name="<?= $key?>" value="<?= $value?>">
+              <?php }?>
+              <?php if ($showInactive) {?>
+              <input type="hidden" name="showInactive" value="1">
+              <?php }?>
+              <input type="date" name="maxDate" value="<?= $maxDate?>" onchange='this.form.submit()'>
+              </input>
+            </form>
             <br>
             <div class="staticSwitch">
-                <p class="sidebar">Nur aktive Spieler</p>
-                <a class="<?= (!$showInactive ? "on" : "off")?>" href="index.php?<?= build_query(true, false) . (!$showInactive ? "&showInactive=1" : "") ?>"><p><?= (!$showInactive ? "AN" : "AUS")?></p><span></span></a>
+              <p class="sidebar">Nur aktive Spieler</p>
+              <a class="<?= (!$showInactive ? "on" : "off")?>" href="index.php?<?= build_query(true, false) . (!$showInactive ? "&showInactive=1" : "") ?>">
+                <p><?= (!$showInactive ? "AN" : "AUS")?></p><span></span>
+              </a>
             </div>
             <br>
             <br>
-            <h5>Ranglisten Stichtag</h5>
-            <form action="index.php" method="GET">
-                <?php
-                foreach ($_GET as $key => $value) {
-                ?>
-                    <input type="hidden" name="<?= $key?>" value="<?= $value?>">
-                <?php }?>
-                <?php if ($showInactive) {?>
-                <input type="hidden" name="showInactive" value="1">
-                <?php }?>
-                <input type="date" name="maxDate" value="<?= $maxDate?>">
-                </input>
-
-                <input type="submit" value="Anzeigen" />
-            </form>
-        </div>
-	</div>
-    <div id="col3">
-        <div id="col3_content" class="clearfix">
-            <h1>Elo-Rangliste<?=!$firstOfMaxDateMonth ? "" : " vom " . date_format(date_create($firstOfMaxDateMonth), "d.m.Y")?><br><sub><?=$name?></sub></h1>
-            <br>
             <table class="ranking">
-                <thead>
+              <thead>
                 <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <?php
-                    if ($has_stati) {
-                    ?>
-                        <th>Status</th>
-                    <?php
-                    }
-                    ?>
-                    <th>Elo</th>
+                  <th></th>
+                  <th>Name</th>
+                  <?php if ($has_stati) { ?>
+                  <th>Status</th>
+                  <?php } ?>
+                  <th>Elo</th>
                 </tr>
-                </thead>
-                <?php
+              </thead>
+              <?php
                 $rank = null;
                 $i = 0;
                 $last = null; 
@@ -152,48 +146,44 @@ function name($row) {
                         $rank = $i + 1;
                     }
                     $last = $row;
-                ?>
-                <tr class="row<?=($i + 1) % 2 + 1?>">
-                    <td><b><?=$rank?></b></td>
-                    <td><?=href($row, name($row))?></td>
-                    <?php
-                    if ($has_stati) {
-                    ?>
-                    <td><?=get_status($row["points"])?></td>
-                    <?php
-                    }
-                    ?>
-                    <td><b><?=round($row["points"])?></b></td>
-                </tr>
-                <?php }?>
+              ?>
+              <tr class="row<?=($i + 1) % 2 + 1?>">
+                <td><b><?=$rank?></b></td>
+                <td><?=href($row, name($row))?></td>
+                <?php if ($has_stati) { ?>
+                <td><?=get_status($row["points"])?></td>
+                <?php } ?>
+                <td><b><?=round($row["points"])?></b></td>
+              </tr>
+              <?php } ?>
             </table>
             <br>
             <h1>Noch nicht eingestufte Spieler<br><sub><?=$name?></sub></h1>
             <br>
             <table class="ranking">
-                <thead>
+              <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Einstufungswert</th>
-                    <th>Spiele</th>
+                  <th>Name</th>
+                  <th>Einstufungswert</th>
+                  <th>Spiele</th>
                 </tr>
-                </thead>
-                <?php
+              </thead>
+              <?php
                 for ($i = 0; $i < count($unrated); $i++) {
                     $row = $unrated[$i];
-                ?>
-                <tr class="row<?=($i + 1) % 2 + 1?>">
-                    <td><?=href($row, name($row))?></td>
-                    <td><b><?=max(1200, round($row["subClassData"]["provisoryranking"]))?></b></td>
-                    <td><b><?=$row["subClassData"]["playedgames"]?></b></td>
-                </tr>
-                <?php }?>
+              ?>
+              <tr class="row<?=($i + 1) % 2 + 1?>">
+                <td><?=href($row, name($row))?></td>
+                <td><b><?=max(1200, round($row["subClassData"]["provisoryranking"]))?></b></td>
+                <td><b><?=$row["subClassData"]["playedgames"]?></b></td>
+              </tr>
+              <?php } ?>
             </table>
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-    </div>
-    </div>
+  </div>
 </body>
 
 </html>
