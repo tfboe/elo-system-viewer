@@ -136,12 +136,15 @@ function getData()
 }
 
 function change($value, $precision = 1) {
+    if ($value >= 1000) {
+        $precision = 0;
+    }
     if ($value === 0) {
         return withClass('neutral', 0);
     } else if ($value > 0) {
-        return withClass('positive', "+" . round($value, $precision));
+        return withClass('positive', "+" . number_format($value, $precision, ',', ''));
     } else {
-        return withClass('negative', round($value, $precision));
+        return withClass('negative', number_format($value, $precision, ',', ''));
     }
 }
 
