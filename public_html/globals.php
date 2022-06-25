@@ -90,7 +90,7 @@ if (!!$maxDate) {
     $firstOfMaxDateMonth = date_format($maxDateObj, "Y-m") . "-01";
 }
 
-function build_query($category = true, $withShowInactive = true, $withMaxDate = true, $withPlayerId = false) {
+function build_query($category = true, $withShowInactive = true, $withMaxDate = true, $withPlayerId = false, $withItsfLicenseNumber = false) {
     $params = $_GET;
     if ($withShowInactive === false) {
         unset($params["showInactive"]);
@@ -100,6 +100,9 @@ function build_query($category = true, $withShowInactive = true, $withMaxDate = 
     }
     if ($withPlayerId === false) {
         unset($params["playerId"]);
+    }
+    if ($withItsfLicenseNumber === false) {
+        unset($params["itsfLicenseNumber"]);
     }
     if ($category === false) {
         unset($params["category"]);

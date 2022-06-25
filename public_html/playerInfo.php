@@ -42,7 +42,11 @@ function getData()
         return [];
     }
     $curl_handle = curl_init();
-    $url = $backendServer . '/tournamentProfile/' . $id . '/' . $_GET["playerId"];
+    if (isset($_GET["playerId"])) {
+        $url = $backendServer . '/tournamentProfile/' . $id . '/' . $_GET["playerId"];
+    } else {
+        $url = $backendServer . '/tournamentProfileByItsfLicenseNumber/' . $id . '/' . $_GET["itsfLicenseNumber"];
+    }
     curl_setopt($curl_handle, CURLOPT_URL, $url);
     // return the body instead of printing it
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
