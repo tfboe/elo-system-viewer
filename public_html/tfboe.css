@@ -46,6 +46,8 @@
         border: 1px;
         border-color: #F2F2F2 !important;
         border-spacing: 0;
+        border-left-style: solid;
+        border-right-style: solid;
         -moz-border-radius: 0;
         border-collapse: separate;        
         color:#404040;
