@@ -248,33 +248,23 @@ tr.clickable:hover{
         <div id="col3">
           <div id="col3_content" class="clearfix">
 
-            <h1>Elo-Rangliste<?=!$firstOfMaxDateMonth ? "" : " vom " . date_format(date_create($firstOfMaxDateMonth), "d.m.Y")?><br><sub><?=$name?></sub></h1>
+            <h1>Elo-Spielerprofil von <?=$player?><br><sub><?=$name?></sub></h1>
             <div class="dropdown">
               <button class="dropbtn">Spielmodus</button>
               <div class="dropdown-content">
-                <a href="index.php?<?=build_query("opensingle")?>">Offenes Einzel</a>
-                <a href="index.php?<?=build_query("opendouble")?>">Offenes Doppel</a>
-                <a href="index.php?<?=build_query("womensingle")?>">Damen Einzel</a>
-                <a href="index.php?<?=build_query("womendouble")?>">Damen Doppel</a>
-                <a href="index.php?<?=build_query("mixed")?>">Mixed Doppel</a>
-                <a href="index.php?<?=build_query("seniorsingle")?>">Senioren Einzel</a>
-                <a href="index.php?<?=build_query("seniordouble")?>">Senioren Doppel</a>
-                <a href="index.php?<?=build_query("juniorsingle")?>">Junioren Einzel</a>
-                <a href="index.php?<?=build_query("juniordouble")?>">Junioren Doppel</a>
-                <a href="index.php?<?=build_query("classic")?>">Offenes Classic Doppel</a>
+                <a href="playerInfo.php?<?=build_query("opensingle", true, true, true, true)?>">Offenes Einzel</a>
+                <a href="playerInfo.php?<?=build_query("opendouble", true, true, true, true)?>">Offenes Doppel</a>
+                <a href="playerInfo.php?<?=build_query("womensingle", true, true, true, true)?>">Damen Einzel</a>
+                <a href="playerInfo.php?<?=build_query("womendouble", true, true, true, true)?>">Damen Doppel</a>
+                <a href="playerInfo.php?<?=build_query("mixed", true, true, true, true)?>">Mixed Doppel</a>
+                <a href="playerInfo.php?<?=build_query("seniorsingle", true, true, true, true)?>">Senioren Einzel</a>
+                <a href="playerInfo.php?<?=build_query("seniordouble", true, true, true, true)?>">Senioren Doppel</a>
+                <a href="playerInfo.php?<?=build_query("juniorsingle", true, true, true, true)?>">Junioren Einzel</a>
+                <a href="playerInfo.php?<?=build_query("juniordouble", true, true, true, true)?>">Junioren Doppel</a>
+                <a href="playerInfo.php?<?=build_query("classic", true, true, true, true)?>">Offenes Classic Doppel</a>
               </div>
             </div>
-            <form class="dateform" action="index.php" method="GET">
-              <?php foreach ($_GET as $key => $value) { ?>
-              <input type="hidden" name="<?= $key?>" value="<?= $value?>" />
-              <?php }?>
-              <?php if ($showInactive) {?>
-              <input type="hidden" name="showInactive" value="1" />
-              <?php }?>
-              <input type="date" name="maxDate" value="<?= $maxDate?>" onchange='this.form.submit()' />
-            </form>
             <br>
-            <div class="playerinfo">Elo-Detailübersicht für Spieler <b><?=$player?></b></div>
             <table class="rankingDetail">
               <thead>
                 <tr>
