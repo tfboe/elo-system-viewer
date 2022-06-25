@@ -174,6 +174,8 @@ function result($result) {
 
 $data = getData();
 
+$elo = $data["elo"];
+$rank = $data["activeRank"];
 $playerArr = $data["playerName"];
 $player = player($playerArr);
 $data = $data["tournaments"];
@@ -248,7 +250,15 @@ tr.clickable:hover{
         <div id="col3">
           <div id="col3_content" class="clearfix">
 
-            <h1>Elo-Spielerprofil von <?=$player?><br><sub><?=$name?></sub></h1>
+            <h1 id="players_profile_headline">Elo-Spielerprofil von <?=$player?><br><sub><?=$name?></sub></h1>
+            <? if ($elo > 0): ?>
+            <br>
+            <div id="current_elo_rank">
+                Aktuelle Elozahl: <b><?=round($elo)?></b>
+                <br>
+                Aktueller Rang: <b><?=$rank?>.</b>
+            </div>
+            <?php endif; ?>
             <div class="dropdown">
               <button class="dropbtn">Spielmodus</button>
               <div class="dropdown-content">

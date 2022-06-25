@@ -144,4 +144,8 @@
       background-color: #ffffff;
       outline: 2px solid #000000;
       outline-offset: -2px;}
+
+    div#current_elo_rank { 
+      font-size: 20px;
+    }
 }
