@@ -2,7 +2,7 @@
 require("secrets.php");
 
 // first is the official token for the official server and second is local development token
-$backendServer = 'https://tfboe-elo.tischfussball.wien/';
+$backendServer = 'https://elo.tfboe.org/backend/public/';
 //$backendServer = 'php-server:8000';
 
 $names = [
