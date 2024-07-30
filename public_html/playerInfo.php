@@ -254,6 +254,10 @@ tr.clickable:hover{
             <? if ($elo > 0): ?>
             <br>
             <div id="current_elo_rank">
+                <?php if ($has_stati) { ?>
+                  Aktueller Status: <b><?=get_status($elo)?></b>
+                  <br>
+                <?php } ?>
                 Aktuelle Elozahl: <b><?=round($elo)?></b>
                 <br>
                 Aktueller Rang: <b><?=$rank?>.</b>
