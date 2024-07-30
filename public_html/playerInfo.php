@@ -272,6 +272,7 @@ tr.clickable:hover{
                 <a href="playerInfo.php?<?=build_query("juniorsingle", true, true, true, true)?>">Junioren Einzel</a>
                 <a href="playerInfo.php?<?=build_query("juniordouble", true, true, true, true)?>">Junioren Doppel</a>
                 <a href="playerInfo.php?<?=build_query("classic", true, true, true, true)?>">Offenes Classic Doppel</a>
+                <a href="playerInfo.php?<?=build_query("womenclassic", true, true, true, true)?>">Damen Classic Doppel</a>
               </div>
             </div>
             <br>

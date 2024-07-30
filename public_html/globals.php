@@ -15,6 +15,7 @@ $names = [
     "seniorsingle" => "Senioren Einzel",
     "seniordouble" => "Senioren Doppel",
     "classic" => "Classic Doppel",
+    "womenclassic" => "Damen Classic",
     "mixed" => "Mixed",
 ];
 
@@ -25,6 +26,7 @@ $doubles = [
     "seniordouble",
     "classic",
     "mixed",
+    "womenclassic",
 ];
 
 $ids = [
@@ -38,6 +40,7 @@ $ids = [
     "seniordouble" => "f7972e41-a7ee-11eb-8243-0242ac140002",
     "classic" => "fbb021e4-a7ee-11eb-8243-0242ac140002",
     "mixed" => "fe9448f4-a7ee-11eb-8243-0242ac140002",
+    "womenclassic" => "42c15405-e499-11ee-bd3f-00163e334dfa",
 ];
 
 $stati = [

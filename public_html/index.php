@@ -104,6 +104,7 @@ function name($row) {
                 <a href="index.php?<?=build_query("juniorsingle")?>">Junioren Einzel</a>
                 <a href="index.php?<?=build_query("juniordouble")?>">Junioren Doppel</a>
                 <a href="index.php?<?=build_query("classic")?>">Offenes Classic Doppel</a>
+                <a href="index.php?<?=build_query("womenclassic")?>">Damen Classic Doppel</a>
               </div>
             </div>
             <form class="dateform" action="index.php" method="GET">
